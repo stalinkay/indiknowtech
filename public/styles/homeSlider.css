@@ -1,0 +1,94 @@
+.homeSlider {
+  position:relative;
+}
+
+.homePlaceHolder {
+  width: 100%;
+  visibility: hidden;
+}
+
+.homeSliderLayer1, .homeSliderLayer2, .homeSliderLayer3, .homeSliderLayer4, .homeSliderLayer5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@keyframes layer2Anim {
+  0%   {opacity: 0;}
+  10%  {opacity: 0;}
+  20%  {opacity: 1;}
+  30%  {opacity: 1;}
+  40%  {opacity: 0;}
+  50%  {opacity: 0;}
+  60%  {opacity: 0;}
+  70%  {opacity: 0;}
+  80%  {opacity: 0;}
+  90%  {opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes layer3Anim {
+  0%   {opacity: 0;}
+  10%  {opacity: 0;}
+  20%  {opacity: 0;}
+  30%  {opacity: 0;}
+  40%  {opacity: 1;}
+  50%  {opacity: 1;}
+  60%  {opacity: 0;}
+  70%  {opacity: 0;}
+  80%  {opacity: 0;}
+  90%  {opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes layer4Anim {
+  0%   {opacity: 0;}
+  10%  {opacity: 0;}
+  20%  {opacity: 0;}
+  30%  {opacity: 0;}
+  40%  {opacity: 0;}
+  50%  {opacity: 0;}
+  60%  {opacity: 1;}
+  70%  {opacity: 1;}
+  80%  {opacity: 0;}
+  90%  {opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes layer5Anim {
+  0%   {opacity: 0;}
+  10%  {opacity: 0;}
+  20%  {opacity: 0;}
+  30%  {opacity: 0;}
+  40%  {opacity: 0;}
+  50%  {opacity: 0;}
+  60%  {opacity: 0;}
+  70%  {opacity: 0;}
+  80%  {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/*.homeSliderLayer1{
+  background-image: url(/images/img1.jpg);
+}*/
+
+.homeSliderLayer2{
+  animation: layer2Anim 30s infinite;
+}
+
+.homeSliderLayer3{
+  animation: layer3Anim 30s infinite;
+}
+
+.homeSliderLayer4{
+  animation: layer4Anim 30s infinite;
+}
+
+.homeSliderLayer5{
+  animation: layer5Anim 30s infinite;
+}

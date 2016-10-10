@@ -1,0 +1,33 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/studentProject') &larr; back to student Projects
+			hr
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2: .jumbotron
+			if !data.post
+				h2 Invalid Post.
+			else
+				header
+					h3= data.post.title
+					h5 Posted 
+						if data.post.publishedDate
+							| on #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
+						if data.post.categories && data.post.categories.length
+							| in 
+							each cat, cat_i in data.post.categories
+								a(href='/studentProject/' + cat.key)= cat.name
+								if cat_i < data.post.categories.length - 1
+									| , 
+								else
+									|  
+					p.lead.text-muted By #{data.post.name} ( #{data.post.qualification} 
+						if data.post.yearOfCompletion === 'pending' || data.post.qualification ==='PhD Candidate'
+							| )
+						else
+							| completed #{data.post.yearOfCompletion})
+						if data.post.author
+							| by #{data.post.author.name.first}
+				.post
+					!= data.post.content.full

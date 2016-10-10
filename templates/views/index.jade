@@ -1,0 +1,36 @@
+extends ../layouts/default
+
+block content
+	.container: .row
+		.col-sm-8.col-md-8.jumbotron
+			
+			//- This is my image slider
+			.slider
+				img.placeHolder(src='/images/img1.jpg')
+				.layer1  
+				.layer2  
+				.layer3  
+				.layer4  
+				.layer5  
+		
+		.col-md-1
+		.col-sm-4.col-md-3.jumbotron
+			h3 Introduction:
+			
+			p(style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; text-align: justify;") 
+				| Since 2008 we have co-designed technologies in rural Namibia for the purpose 
+				| of Indigenous Knowledge (IK) collection, representation and transfer across
+				| generations with rural ovaHerero community members in Eastern Namibia.
+			a(href='/project' target='_blank') Read more...
+			hr
+			br
+				
+			h3 Sponsors:
+			
+			//- NUST logo
+			a(href='http://www.nust.na/' target='_blank')
+				img(src='/images/nust-logo.png') 
+				
+			//- NCRST logo
+			a(href='http://www.ncrst.na//' target='_blank')
+				img(src='/images/ncrst-logo.jpeg', style='padding-right: 20px; max-width: 100%; margin: 0 auto 10px;')

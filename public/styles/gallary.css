@@ -1,0 +1,51 @@
+
+.gallery {
+}
+
+.gallery > div {
+	float: left;
+  position: relative;
+  padding: 5px;
+}
+
+.gallery > div > img {
+	cursor: pointer;
+	-webkit-filter: grayscale(100%);
+	-moz-filter:    grayscale(100%);
+	-ms-filter:     grayscale(100%);
+	-o-filter:      grayscale(100%);
+	filter: gray;
+
+	opacity:.8;
+  display: block;
+  width: 200px;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.gallery > div:hover {
+  z-index: 1;
+}
+
+.gallery > div:hover > img {
+	filter: none;
+	-webkit-filter: grayscale(0%);
+	-moz-filter:    grayscale(0%);
+	-ms-filter:     grayscale(0%);
+	-o-filter:      grayscale(0%);
+
+	opacity:1;
+	/*box-shadow: 10px 10px 5px #262626;*/
+  transform: scale(3);
+  transition: .5s transform;
+}
+
+.cf:before, .cf:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.cf:after {
+  clear: both;
+}

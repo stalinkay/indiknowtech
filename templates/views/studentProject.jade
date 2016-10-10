@@ -1,0 +1,91 @@
+extends ../layouts/default
+
+mixin studentProject(studentProject)
+	.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
+		if studentProject.image.exists
+			img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
+		h3!= studentProject.title
+		h5 Posted  
+			if studentProject.categories && studentProject.categories.length
+				| in 
+				each cat, cat_i in studentProject.categories
+					a(href='/studentProject/' + cat.key)= cat.name
+					if cat_i < studentProject.categories.length - 1
+						| , 
+					else
+						|  
+		p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
+			if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
+				| )
+			else
+				| completed #{studentProject.yearOfCompletion})
+		h6
+			if studentProject.principalSupervisor !== 'Principal supervisor'
+				strong Principal Supervisor : 
+				| #{studentProject.principalSupervisor} 
+		h6
+			if studentProject.associateSupervisor !== 'Associate supervisor'
+				strong Associate Supervisor : 
+				| #{studentProject.associateSupervisor}
+		h6
+			if studentProject.externalSupervisor !== 'External supervisor'
+				strong External supervisor : 
+				|#{studentProject.externalSupervisor}
+		if studentProject.principalSupervisor === 'Principal supervisor'
+			br
+		if studentProject.associateSupervisor === 'Associate supervisor'
+			br
+		if studentProject.externalSupervisor === 'External supervisor'
+			br
+		br
+		p!= studentProject.content.brief
+		if studentProject.content.extended
+			p.read-more: a(href='/studentProject/studentProjectPost/' + studentProject.slug) Read more...
+			
+block content
+	.container: .row
+		.col-sm-8.col-md-9
+			h1 Student Projects
+			if filters.category && !data.category
+				h3.text-muted Invalid Category.
+			else
+				if data.posts.results.length
+					if data.posts.totalPages > 1
+						h4.text-weight-normal Showing
+							strong #{data.posts.first}
+							|  to
+							strong #{data.posts.last}
+							|  of
+							strong #{data.posts.total}
+							|  posts.
+					else	
+					.studentProject
+						each studentProject in data.posts.results
+							+studentProject(studentProject)
+
+					if data.posts.totalPages > 1
+						ul.pagination
+							if data.posts.previous
+								li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+							else
+								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+							each p, i in data.posts.pages
+								li(class=data.posts.currentPage == p ? 'active' : null)
+									a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+							if data.posts.next
+								li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+							else
+								li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+				else
+					if data.category
+						h3.text-muted There are no posts in the category #{data.category.name}.
+					else
+						h3.text-muted There are no posts yet.
+						
+		if data.categories.length
+			.col-sm-4.col-md-3
+				h2 Categories
+				.list-group(style='margin-top: 70px;')
+					a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
+					each cat in data.categories
+						a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name

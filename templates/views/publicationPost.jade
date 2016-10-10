@@ -1,0 +1,10 @@
+extends ../layouts/default
+
+each post in data.posts.results
+  .post(data-ks-editable=editable(user, { list: 'Publication', id: post.id }))
+    div.col-sm-12.nopad
+      hr
+      //post link text
+      ul#books
+        li #{post.refrence}
+        h5: a(href='#{post.link}', target='_blank')= post.linktext

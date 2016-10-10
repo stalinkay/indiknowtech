@@ -1,0 +1,44 @@
+extends ../layouts/default
+
+mixin homeSlider(homeSlider)
+	.homeSlider(data-ks-editable=editable(user, { list: 'HomeSlider', id: homeSlider.categories })).jumbotron
+		.slider
+			img.placeHolder(src=homeSlider._.image1.fit())
+			img.homeSliderLayer1(src=homeSlider._.image1.fit())
+			img.homeSliderLayer2(src=homeSlider._.image2.fit()) 
+			img.homeSliderLayer3(src=homeSlider._.image3.fit())  
+			img.homeSliderLayer4(src=homeSlider._.image4.fit()) 
+			img.homeSliderLayer5(src=homeSlider._.image5.fit())  
+
+block intro
+	.container: .row
+		.col-sm-8.col-md-9
+			h1 Home
+		
+block content
+	.container: .row
+		.col-sm-8.col-md-9
+				if data.posts.results.length
+					.homeSlider
+						each homeSlider in data.posts.results
+							+homeSlider(homeSlider)
+
+		.col-md-1
+		.col-sm-4.col-md-3.jumbotron
+			
+			h3 Introduction:
+			p(style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; text-align: justify;") 
+				| Since 2008 we have co-designed technologies in rural Namibia for the purpose 
+				| of Indigenous Knowledge (IK) collection, representation and transfer across
+				| generations with rural ovaHerero community members in Eastern Namibia.
+			a(href='/project' target='_blank') Read more...
+			hr
+			br
+				
+			h3 Sponsors:
+			//- NUST logo
+			a(href='http://www.nust.na/' target='_blank')
+				img(src='/images/nust-logo.png', style='padding-right: 20px; max-width: 100%; margin: 0 auto 10px;') 
+			//- NCRST logo
+			a(href='http://www.ncrst.na//' target='_blank')
+				img(src='/images/ncrst-logo.jpeg', style='padding-right: 20px; max-width: 100%; margin: 0 auto 10px;')
