@@ -1,0 +1,27 @@
+***************************************************************************
+                     INDIKNOWTECH USER MANUAL
+***************************************************************************
+This is the User manual for the Indiknowtech website.
+It is built using the KeystoneJS (http://keystonejs.com/) content management system. It is very 
+user friendly and easy to use from both an developer as well as an admin
+point of view.
+
+It uses an MongoDB database to store all its content, exept for images. Images are stored in an cloud service called CLoudinary (http://cloudinary.com/). Using Cloudinary means that we do not have to be concerned with preparing images for use in the website, the service will handle the transformation and storage.
+
+
+***************************************************************************
+                           HOME PAGE
+***************************************************************************
+The home page is mostly static. The only element that can be modified is the image slider.
+
+This is done in the Home tab of the AdminUI.
+
+There can never be more than 1 slider at any time. Therefore it is best to edit the existing slider should you want to make any changes to the slider. Just ignore the Create Home Slider button.
+
+To edit the slider simply click in the existing slider, this will bring you to its edit page. There are always just 5 images in the slider. They can be changed by clicking on the Change Image button and selecting the new image you chose to have in the slider. This will replace the existing image.
+
+When finished selecting the new image or images simply click on the save button. The images will now be uploaded to Cloudinary. This can take several minutes depending on the size of the images aswell as the number of new images.
+
+After they have been uploaded they will be visible on the home page slider.
+
+NOTE: Make sure the state is set to PUBLISHED before saving, other whise the new images will be uploaded, but will not apear in the slider until they are marked as PUBLISHED. 
