@@ -28,14 +28,14 @@ block intro
 
 block content
 	.container: .row
-		.col-sm-12.col-md-12.jumbotron
-			if !data.category
+		if !data.category
+			.col-sm-8.col-md-9.jumbotron
 				a(href='/project', class=!data.category ? 'active' : false)
 					//***** the following code is static ******
 					h2 Introduction
 				.row
 					.col-sm-2.col-xs-2
-					img(src='/images/projectIntro.webp', width='50%')
+					img(src='/images/projectIntro.JPG', width='50%')
 					.col-sm-1.col-xs-1
 				.row
 					p(style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; text-align: justify;")
@@ -57,49 +57,97 @@ block content
 					| research sites to the Kunene region, where we have established
 					| a long-term collaboration with an ovaHimba community, exploring
 					| technology adaptations and crowdsourcing technologies.
-			else
-				
-		.col-sm-8.col-md-9
-			if filters.category && !data.category
-				h3.text-muted Invalid Category.
-			else
-				if data.posts.results.length
-					if data.posts.totalPages > 1
-						h4.text-weight-normal Showing
-							strong #{data.posts.first}
-							|  to
-							strong #{data.posts.last}
-							|  of
-							strong #{data.posts.total}
-							|  posts.
-					else	
-					.project
-						each project in data.posts.results
-							+project(project)
+					
+			if data.categories.length
+				.col-sm-4.col-md-3
+					h2 Categories
+					.list-group(style='margin-top: 70px;')
+						a(href='/project', class=!data.category ? 'active' : false).list-group-item All Categories
+						each cat in data.categories
+							a(href='/project/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 
-					if data.posts.totalPages > 1
-						ul.pagination
-							if data.posts.previous
-								li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
-							else
-								li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
-							each p, i in data.posts.pages
-								li(class=data.posts.currentPage == p ? 'active' : null)
-									a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
-							if data.posts.next
-								li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
-							else
-								li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+			.col-sm-8.col-md-9
+				if filters.category && !data.category
+					h3.text-muted Invalid Category.
 				else
-					if data.category
-						h3.text-muted There are no posts in the category #{data.category.name}.
+					if data.posts.results.length
+						if data.posts.totalPages > 1
+							h4.text-weight-normal Showing
+								strong #{data.posts.first}
+								|  to
+								strong #{data.posts.last}
+								|  of
+								strong #{data.posts.total}
+								|  posts.
+						else	
+						.project
+							each project in data.posts.results
+								+project(project)
+
+						if data.posts.totalPages > 1
+							ul.pagination
+								if data.posts.previous
+									li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+								else
+									li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+								each p, i in data.posts.pages
+									li(class=data.posts.currentPage == p ? 'active' : null)
+										a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+								if data.posts.next
+									li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+								else
+									li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
 					else
-						h3.text-muted There are no posts yet.
-						
-		if data.categories.length
-			.col-sm-4.col-md-3
-				h2 Categories
-				.list-group(style='margin-top: 70px;')
-					a(href='/project', class=!data.category ? 'active' : false).list-group-item All Categories
-					each cat in data.categories
-						a(href='/project/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+						if data.category
+							h3.text-muted There are no posts in the category #{data.category.name}.
+						else
+							h3.text-muted There are no posts yet.
+
+		else
+			.col-sm-8.col-md-9
+				if filters.category && !data.category
+					h3.text-muted Invalid Category.
+				else
+					if data.posts.results.length
+						if data.posts.totalPages > 1
+							h4.text-weight-normal Showing
+								strong #{data.posts.first}
+								|  to
+								strong #{data.posts.last}
+								|  of
+								strong #{data.posts.total}
+								|  posts.
+						else	
+						.project
+							each project in data.posts.results
+								+project(project)
+
+						if data.posts.totalPages > 1
+							ul.pagination
+								if data.posts.previous
+									li: a(href='?page=' + data.posts.previous): span.glyphicon.glyphicon-chevron-left
+								else
+									li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+								each p, i in data.posts.pages
+									li(class=data.posts.currentPage == p ? 'active' : null)
+										a(href='?page=' + (p == '...' ? (i ? data.posts.totalPages : 1) : p ))= p
+								if data.posts.next
+									li: a(href='?page=' + data.posts.next): span.glyphicon.glyphicon-chevron-right
+								else
+									li.disabled: a(href='?page=' + data.posts.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+					else
+						if data.category
+							h3.text-muted There are no posts in the category #{data.category.name}.
+						else
+							h3.text-muted There are no posts yet.
+							
+			if data.categories.length
+				.col-sm-4.col-md-3
+					h2 Categories
+					.list-group(style='margin-top: 70px;')
+						a(href='/project', class=!data.category ? 'active' : false).list-group-item All Categories
+						each cat in data.categories
+							a(href='/project/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+
+			
+	
