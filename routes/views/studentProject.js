@@ -65,7 +65,7 @@ exports = module.exports = function (req, res) {
 				state: 'published',
 			},
 		})
-			.sort('-catagories')
+			.sort('categories')
 			.populate('author categories');
 
 		if (locals.data.category) {
