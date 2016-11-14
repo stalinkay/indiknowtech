@@ -32,5 +32,5 @@ StudentProject.schema.virtual('content.full').get(function() {
     return this.content.extended || this.content.brief;
 });
 
-StudentProject.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+StudentProject.defaultColumns = 'name|20%,title, state|20%, publishedDate|20%';
 StudentProject.register();
