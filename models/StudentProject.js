@@ -22,8 +22,8 @@ StudentProject.add({
     state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
     image: { type: Types.CloudinaryImage },
     content: {
-  		brief: { type: Types.Html, wysiwyg: false, height: 150 },
-  		extended: { type: Types.Html, wysiwyg: false, height: 400 },
+  		brief: { type: Types.Html, wysiwyg: true, height: 150 },
+  		extended: { type: Types.Html, wysiwyg: true, height: 400 },
   	},
     categories: { type: Types.Relationship, ref: 'StudentProjectCategory', many: true }
 });
