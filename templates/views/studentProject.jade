@@ -120,13 +120,16 @@ block content
 						each studentProject in data.posts.results
 							+currentStudentProject(studentProject)
 					
-					if !data.category
+					if !data.category && data.posts.currentPage === 1
 						br
 						br
 						h1 Completed Student Projects
 					else
-						if data.category.name !== "Ongoing Student Projects"
+						if data.posts.currentPage > 1
 							h1 Completed Student Projects
+						else
+							if data.category.name !== "Ongoing Student Projects"
+								h1 Completed Student Projects
 					.studentProject
 						each studentProject in data.posts.results
 							+pastStudentProject(studentProject)
