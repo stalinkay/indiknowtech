@@ -96,11 +96,14 @@ mixin pastStudentProject(studentProject)
 block content
 	.container: .row
 		.col-sm-8.col-md-9
-			if !data.category
+			if !data.category && data.posts.currentPage == 1
 				h1 Ongoing Student Projects
 			else
-				if data.category.name !== "Completed Student Projects"
+				if data.posts.currentPage > 1
 					h1 Ongoing Student Projects
+				else
+					if data.category.name !== "Completed Student Projects"
+						h1 Ongoing Student Projects
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.
 			else
