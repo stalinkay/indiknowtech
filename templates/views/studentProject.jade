@@ -1,51 +1,106 @@
 extends ../layouts/default
 
-mixin studentProject(studentProject)
-	.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
-		if studentProject.image.exists
-			img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
-		h3!= studentProject.title
-		h5 Posted  
-			if studentProject.categories && studentProject.categories.length
-				| in 
-				each cat, cat_i in studentProject.categories
-					a(href='/studentProject/' + cat.key)= cat.name
-					if cat_i < studentProject.categories.length - 1
-						| , 
+mixin currentStudentProject(studentProject)
+	each cat, cat_i in studentProject.categories
+		if cat.name === 'Ongoing Student Projects'
+			.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
+				if studentProject.image.exists
+					img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
+				h3!= studentProject.title
+				h5 Posted  
+					if studentProject.categories && studentProject.categories.length
+						| in 
+						each cat, cat_i in studentProject.categories
+							a(href='/studentProject/' + cat.key)= cat.name
+							if cat_i < studentProject.categories.length - 1
+								| , 
+							else
+								|  
+				p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
+					if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
+						| )
 					else
-						|  
-		p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
-			if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
-				| )
-			else
-				| completed #{studentProject.yearOfCompletion})
-		h6
-			if studentProject.principalSupervisor !== 'Principal supervisor'
-				strong Principal Supervisor : 
-				| #{studentProject.principalSupervisor} 
-		h6
-			if studentProject.associateSupervisor !== 'Associate supervisor'
-				strong Associate Supervisor : 
-				| #{studentProject.associateSupervisor}
-		h6
-			if studentProject.externalSupervisor !== 'External supervisor'
-				strong External supervisor : 
-				|#{studentProject.externalSupervisor}
-		if studentProject.principalSupervisor === 'Principal supervisor'
-			br
-		if studentProject.associateSupervisor === 'Associate supervisor'
-			br
-		if studentProject.externalSupervisor === 'External supervisor'
-			br
-		br
-		p!= studentProject.content.brief
-		if studentProject.content.extended
-			p.read-more: a(href='/studentProject/studentProjectPost/' + studentProject.slug) Read more...
-			
+						| completed #{studentProject.yearOfCompletion})
+				h6
+					if studentProject.principalSupervisor !== 'Principal supervisor'
+						strong Principal Supervisor : 
+						| #{studentProject.principalSupervisor} 
+				h6
+					if studentProject.associateSupervisor !== 'Associate supervisor'
+						strong Associate Supervisor : 
+						| #{studentProject.associateSupervisor}
+				h6
+					if studentProject.externalSupervisor !== 'External supervisor'
+						strong External supervisor : 
+						|#{studentProject.externalSupervisor}
+				if studentProject.principalSupervisor === 'Principal supervisor'
+					br
+				if studentProject.associateSupervisor === 'Associate supervisor'
+					br
+				if studentProject.externalSupervisor === 'External supervisor'
+					br
+				br
+				p!= studentProject.content.brief
+				if studentProject.content.extended
+					p.read-more: a(href='/studentProject/studentProjectPost/' + studentProject.slug) Read more...
+		if cat_i < studentProject.categories.length - 1
+	
+	
+	
+mixin pastStudentProject(studentProject)
+	each cat, cat_i in studentProject.categories
+		if cat.name === 'Completed Student Projects'
+			.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
+				if studentProject.image.exists
+					img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
+				h3!= studentProject.title
+				h5 Posted  
+					if studentProject.categories && studentProject.categories.length
+						| in 
+						each cat, cat_i in studentProject.categories
+							a(href='/studentProject/' + cat.key)= cat.name
+							if cat_i < studentProject.categories.length - 1
+								| , 
+							else
+								|  
+				p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
+					if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
+						| )
+					else
+						| completed #{studentProject.yearOfCompletion})
+				h6
+					if studentProject.principalSupervisor !== 'Principal supervisor'
+						strong Principal Supervisor : 
+						| #{studentProject.principalSupervisor} 
+				h6
+					if studentProject.associateSupervisor !== 'Associate supervisor'
+						strong Associate Supervisor : 
+						| #{studentProject.associateSupervisor}
+				h6
+					if studentProject.externalSupervisor !== 'External supervisor'
+						strong External supervisor : 
+						|#{studentProject.externalSupervisor}
+				if studentProject.principalSupervisor === 'Principal supervisor'
+					br
+				if studentProject.associateSupervisor === 'Associate supervisor'
+					br
+				if studentProject.externalSupervisor === 'External supervisor'
+					br
+				br
+				p!= studentProject.content.brief
+				if studentProject.content.extended
+					p.read-more: a(href='/studentProject/studentProjectPost/' + studentProject.slug) Read more...
+		if cat_i < studentProject.categories.length - 1
+	
+				
 block content
 	.container: .row
 		.col-sm-8.col-md-9
-			h1 Student Projects
+			if !data.category
+				h1 Ongoing Student Projects
+			else
+				if data.category.name !== "Completed Student Projects"
+					h1 Ongoing Student Projects
 			if filters.category && !data.category
 				h3.text-muted Invalid Category.
 			else
@@ -61,7 +116,18 @@ block content
 					else	
 					.studentProject
 						each studentProject in data.posts.results
-							+studentProject(studentProject)
+							+currentStudentProject(studentProject)
+					
+					if !data.category
+						br
+						br
+						h1 Completed Student Projects
+					else
+						if data.category.name !== "Ongoing Student Projects"
+							h1 Completed Student Projects
+					.studentProject
+						each studentProject in data.posts.results
+							+pastStudentProject(studentProject)
 
 					if data.posts.totalPages > 1
 						ul.pagination
