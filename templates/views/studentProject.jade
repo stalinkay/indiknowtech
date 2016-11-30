@@ -170,7 +170,7 @@ block content
 							each cat in data.categories
 								a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 				else
-					.col-sm-4.col-md-3(style='margin-top: 10px;')
+					.col-sm-4.col-md-3(style='margin-top: 6px;')
 						h2 Categories
 						.list-group
 							a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
