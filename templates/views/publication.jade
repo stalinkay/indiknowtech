@@ -59,9 +59,9 @@ block content
 						h3.text-muted There are no posts yet.
 						
 		if data.categories.length
-			.col-sm-4.col-md-3
+			.col-sm-4.col-md-3(style='margin-top: -25px;')
 				h2 Categories
-				.list-group(style='margin-top: 70px;')
+				.list-group
 					a(href='/publication', class=!data.category ? 'active' : false).list-group-item All Categories
 					each cat in data.categories
 						a(href='/publication/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
