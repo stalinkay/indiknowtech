@@ -161,7 +161,7 @@ block content
 						each cat in data.categories
 							a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 			else
-				if data.category.name !== "Ongoing Student Projects" 
+				if data.category.name !== "Ongoing Student Projects" || data.posts.currentPage > 1 
 					.col-sm-4.col-md-3(style='margin-top: 97px;')
 						.list-group
 							a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
