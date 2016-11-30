@@ -4,7 +4,7 @@ mixin post(post)
 	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id })).jumbotron
 		.row
 			if post.image.exists
-				img(src=post._.image.fit(200,180), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
+				img(src=post._.image.fit(250,210), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
 				h3: a(href='/blog/post/' + post.slug)= post.title
 			p.lead.text-muted Posted 
 				if post.publishedDate
