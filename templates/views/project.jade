@@ -18,35 +18,36 @@ block intro
 block content
 	.container: .row
 		if !data.category
-			.col-sm-8.col-md-9.jumbotron
-				a(href='/project', class=!data.category ? 'active' : false)
-					//***** the following code is static ******
-					h2 Introduction
-				.row
-					.col-sm-2.col-xs-2
-					img(src='/images/projectIntro.JPG', width='50%')
-					.col-sm-1.col-xs-1
-				.row
-					p(style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; text-align: justify;")
-					| Since 2008 we have co-designed technologies in rural Namibia
-					| for the purpose of Indigenous Knowledge (IK) collection,
-					| representation and transfer across generations with rural
-					| ovaHerero community members in Eastern Namibia. We deconstruct
-					| the tensions that occur between Western imprinted technology
-					| and the digital representation of Indigenous Knowledge in
-					| theory and practice. Assumptions regarding methods considered
-					| appropriate, as well as concepts and techniques are revised.
-					| Design decisions need to be determined and negotiated within
-					| local contexts and an indigenous epistemology. We pursue a
-					| community-based co-design (CBCD) approach, which is
-					| fundamentally rooted in a dialogical and participatory action
-					| research paradigm. We have developed a number of prototypes and
-					| mobile applications to support IK collection, classification,
-					| representation and curation. Since 2014 we have expanded our
-					| research sites to the Kunene region, where we have established
-					| a long-term collaboration with an ovaHimba community, exploring
-					| technology adaptations and crowdsourcing technologies.
-					
+			.col-sm-8.col-md-9(style="width:73%; margin-left:1%; margin-right:1%;")
+				.row.jumbotron
+					a(href='/project', class=!data.category ? 'active' : false)
+						//***** the following code is static ******
+						h2 Introduction
+					.row
+						.col-sm-2.col-xs-2
+						img(src='/images/projectIntro.JPG', width='50%')
+						.col-sm-1.col-xs-1
+					.row
+						p(style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; text-align: justify;")
+						| Since 2008 we have co-designed technologies in rural Namibia
+						| for the purpose of Indigenous Knowledge (IK) collection,
+						| representation and transfer across generations with rural
+						| ovaHerero community members in Eastern Namibia. We deconstruct
+						| the tensions that occur between Western imprinted technology
+						| and the digital representation of Indigenous Knowledge in
+						| theory and practice. Assumptions regarding methods considered
+						| appropriate, as well as concepts and techniques are revised.
+						| Design decisions need to be determined and negotiated within
+						| local contexts and an indigenous epistemology. We pursue a
+						| community-based co-design (CBCD) approach, which is
+						| fundamentally rooted in a dialogical and participatory action
+						| research paradigm. We have developed a number of prototypes and
+						| mobile applications to support IK collection, classification,
+						| representation and curation. Since 2014 we have expanded our
+						| research sites to the Kunene region, where we have established
+						| a long-term collaboration with an ovaHimba community, exploring
+						| technology adaptations and crowdsourcing technologies.
+						
 			if data.categories.length
 				.col-sm-4.col-md-3(style ="margin-top: -69px")
 					h2 Categories
