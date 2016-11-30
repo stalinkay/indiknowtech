@@ -154,14 +154,14 @@ block content
 						h3.text-muted There are no posts yet.
 						
 		if data.categories.length
-			if !data.category && data.posts.currentPage == 1
+			if !data.category
 				.col-sm-4.col-md-3(style='margin-top: 97px;')
 					.list-group
 						a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
 						each cat in data.categories
 							a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 			else
-				if data.category.name !== "Ongoing Student Projects" || data.posts.currentPage > 1 
+				if data.category.name !== "Ongoing Student Projects"
 					.col-sm-4.col-md-3(style='margin-top: 97px;')
 						.list-group
 							a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
