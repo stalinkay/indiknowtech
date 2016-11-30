@@ -154,7 +154,7 @@ block content
 						h3.text-muted There are no posts yet.
 						
 		if data.categories.length
-			if data.category.name !== "Ongoing Student Projects"
+			if data.category.name !== "Ongoing Student Projects" || !data.category
 				.col-sm-4.col-md-3(style='margin-top: 33px;')
 					h2 Categories
 					.list-group
