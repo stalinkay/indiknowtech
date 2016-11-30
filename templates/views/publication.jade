@@ -35,6 +35,7 @@ block content
 							strong #{data.posts.total}
 							|  posts.
 					else	
+						h4.text-weight-normal Showing #{utils.plural(data.posts.results.length, '* post')}.
 					.post
 						each post in data.posts.results
 								+post(post)
@@ -59,8 +60,7 @@ block content
 						h3.text-muted There are no posts yet.
 						
 		if data.categories.length
-			.col-sm-4.col-md-3(style='margin-top: -25px;')
-				h2 Categories
+			.col-sm-4.col-md-3(style='margin-top: 39px;')
 				.list-group
 					a(href='/publication', class=!data.category ? 'active' : false).list-group-item All Categories
 					each cat in data.categories

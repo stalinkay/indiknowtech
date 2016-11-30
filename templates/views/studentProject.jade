@@ -16,7 +16,7 @@ mixin currentStudentProject(studentProject)
 								| , 
 							else
 								|  
-				p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
+				h3.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
 					if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
 						| )
 					else
@@ -63,7 +63,7 @@ mixin pastStudentProject(studentProject)
 								| , 
 							else
 								|  
-				p.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
+				h3.lead.text-muted By #{studentProject.name} ( #{studentProject.qualification} 
 					if studentProject.yearOfCompletion === 'pending' || studentProject.qualification ==='PhD Candidate'
 						| )
 					else
@@ -155,23 +155,20 @@ block content
 						
 		if data.categories.length
 			if !data.category && data.posts.currentPage == 1
-				.col-sm-4.col-md-3(style='margin-top: 33px;')
-					h2 Categories
+				.col-sm-4.col-md-3(style='margin-top: 97px;')
 					.list-group
 						a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
 						each cat in data.categories
 							a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 			else
 				if data.category.name !== "Ongoing Student Projects" 
-					.col-sm-4.col-md-3(style='margin-top: 33px;')
-						h2 Categories
+					.col-sm-4.col-md-3(style='margin-top: 97px;')
 						.list-group
 							a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
 							each cat in data.categories
 								a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 				else
-					.col-sm-4.col-md-3(style='margin-top: 6px;')
-						h2 Categories
+					.col-sm-4.col-md-3(style='margin-top: 69px;')
 						.list-group
 							a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
 							each cat in data.categories

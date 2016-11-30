@@ -20,9 +20,7 @@ block content
 		if !data.category
 			.col-sm-8.col-md-9(style="width:73%; margin-left:1%; margin-right:1%;")
 				.row.jumbotron
-					a(href='/project', class=!data.category ? 'active' : false)
-						//***** the following code is static ******
-						h2 Introduction
+					h2 Introduction
 					.row
 						.col-sm-2.col-xs-2
 						img(src='/images/projectIntro.JPG', width='50%')
@@ -49,8 +47,7 @@ block content
 						| technology adaptations and crowdsourcing technologies.
 						
 			if data.categories.length
-				.col-sm-4.col-md-3(style ="margin-top: -69px")
-					h2 Categories
+				.col-sm-4.col-md-3(style ="margin-top: -17px")
 					.list-group(style='margin-top: 17px;')
 						a(href='/project', class=!data.category ? 'active' : false).list-group-item All Categories
 						each cat in data.categories
@@ -132,9 +129,8 @@ block content
 							h3.text-muted There are no posts yet.
 							
 			if data.categories.length
-				.col-sm-4.col-md-3(style ="margin-top: -69px")
-					h2 Categories
-					.list-group(style='margin-top: 17px;')
+				.col-sm-4.col-md-3(style ="margin-top: 0px")
+					.list-group
 						a(href='/project', class=!data.category ? 'active' : false).list-group-item All Categories
 						each cat in data.categories
 							a(href='/project/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
