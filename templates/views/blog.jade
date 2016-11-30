@@ -19,8 +19,6 @@ mixin post(post)
 							|  
 				if post.author
 					| by #{post.author.name.first}
-				else
-					br
 		.row
 			p!= post.content.brief
 			if post.content.extended
