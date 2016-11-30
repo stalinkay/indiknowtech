@@ -6,7 +6,7 @@ mixin currentStudentProject(studentProject)
 			.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
 				if studentProject.image.exists
 					img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
-				h3!= studentProject.title
+				h4!= studentProject.title
 				h5 Posted  
 					if studentProject.categories && studentProject.categories.length
 						| in 
@@ -53,7 +53,7 @@ mixin pastStudentProject(studentProject)
 			.studentProject(data-ks-editable=editable(user, { list: 'StudentProject', id: studentProject.categories })).jumbotron
 				if studentProject.image.exists
 					img(src=studentProject._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
-				h3!= studentProject.title
+				h4!= studentProject.title
 				h5 Posted  
 					if studentProject.categories && studentProject.categories.length
 						| in 
