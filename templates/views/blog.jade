@@ -10,13 +10,13 @@ mixin post(post)
 				if post.publishedDate
 					| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
 				if post.categories && post.categories.length
-					p.lead.text-muted in 
-						each cat, i in post.categories
-							a(href='/blog/' + cat.key)= cat.name
-							if i < post.categories.length - 1
-								| , 
-							else
-								|  
+					| in 
+					each cat, i in post.categories
+						a(href='/blog/' + cat.key)= cat.name
+						if i < post.categories.length - 1
+							| , 
+						else
+							|  
 				if post.author
 					| by #{post.author.name.first}
 				else
