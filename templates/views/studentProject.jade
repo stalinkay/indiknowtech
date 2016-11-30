@@ -154,9 +154,18 @@ block content
 						h3.text-muted There are no posts yet.
 						
 		if data.categories.length
-			.col-sm-4.col-md-3(style='margin-top: 33px;')
-				h2 Categories
-				.list-group
-					a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
-					each cat in data.categories
-						a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+			if data.category.name !== "Ongoing Student Projects"
+				.col-sm-4.col-md-3(style='margin-top: 33px;')
+					h2 Categories
+					.list-group
+						a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
+						each cat in data.categories
+							a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+			else
+				.col-sm-4.col-md-3(style='margin-top: 17px;')
+					h2 Categories
+					.list-group
+						a(href='/studentProject', class=!data.category ? 'active' : false).list-group-item All Student Projects
+						each cat in data.categories
+							a(href='/studentProject/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+			
