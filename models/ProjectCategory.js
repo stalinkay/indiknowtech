@@ -15,4 +15,5 @@ ProjectCategory.add({
 
 ProjectCategory.relationship({ ref: 'Project', path: 'categories' });
 
+ProjectCategory.defaultColumns = 'name, state|20%';
 ProjectCategory.register();
