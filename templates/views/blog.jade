@@ -72,6 +72,6 @@ block content
 		if data.categories.length
 			.col-sm-4.col-md-3(style='margin-top: 39px;')
 				.list-group
-					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
+					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Trips
 					each cat in data.categories
 						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
