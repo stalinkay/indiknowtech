@@ -11,6 +11,7 @@ var TeamCategory = new keystone.List('TeamCategory', {
 
 TeamCategory.add({
 	name: { type: String, required: true },
+	priority: {type: String, required: true, default: '0'},
 });
 
 TeamCategory.relationship({ ref: 'Team', path: 'categories' });

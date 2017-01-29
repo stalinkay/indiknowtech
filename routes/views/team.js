@@ -19,7 +19,7 @@ exports = module.exports = function (req, res) {
 	// Load all categories
 	view.on('init', function (next) {
 
-		keystone.list('TeamCategory').model.find().sort('name').exec(function (err, results) {
+		keystone.list('TeamCategory').model.find().sort('priority').exec(function (err, results) {
 
 			if (err || !results.length) {
 				return next(err);
@@ -65,7 +65,7 @@ exports = module.exports = function (req, res) {
 				state: 'published',
 			},
 		})
-			.sort('-catagories')
+			.sort('priority')
 			.populate('author categories');
 
 		if (locals.data.category) {

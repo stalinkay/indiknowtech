@@ -2,10 +2,12 @@ extends ../layouts/default
 
 mixin team(team)
 	.team(data-ks-editable=editable(user, { list: 'Team', id: team.categories })).jumbotron
+		each cat, i in team.categories
+			h2: a(href='/team/' + cat.key)= cat.name 
+		br
 		if team.image.exists
 			img(src=team._.image.fit(200,200), style='margin-bottom: 10px; padding: 10px; margin: 0 auto 10px;').img.pull-left
-		each cat, i in team.categories
-			h2: a(href='/team/' + cat.key)= cat.name
+		h4.lead.text-muted!= team.role
 		h4!= team.position
 		p!= team.discription
 			
